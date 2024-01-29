@@ -7,6 +7,15 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface Statistiquerepo extends JpaRepository<Statistique,String> {
-    @Query(nativeQuery = true, value = "SELECT * FROM statistique")
+    @Query(nativeQuery = true, value = "SELECT\n" +
+    "    m.marque,\n" +
+    "    COUNT(*) AS nombre_annonces,\n" +
+    "    SUM(CASE WHEN a.validation = 1 THEN 1 ELSE 0 END) AS nombre_annonces_validees\n" +
+    "FROM\n" +
+    "    annonces a\n" +
+    "JOIN\n" +
+    "    marque m ON a.idmarque = m.idmarque\n" +
+    "GROUP BY\n" +
+    "    m.marque;")
     List<Statistique> findstat();
 }
