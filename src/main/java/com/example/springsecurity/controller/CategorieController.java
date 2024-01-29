@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class CategorieController {
     @Autowired
     private Categorieservice categorieservice;

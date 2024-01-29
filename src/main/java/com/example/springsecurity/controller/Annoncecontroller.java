@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping
+@CrossOrigin
 public class Annoncecontroller {
     @Autowired
     private Annonceservice annoncesservice;
@@ -22,6 +23,7 @@ public class Annoncecontroller {
         annoncesservice.insererannonce(annonces);
         return "annonce";
     }
+    /* */
     @GetMapping("/historique/{idutilisateur}")
     public List<Annonce> getannonce(@PathVariable int idutilisateur){
         return annoncesservice.getannonceparutilisateur(idutilisateur);
