@@ -1,4 +1,4 @@
-package com.example.springsecurity.model;
+    package com.example.springsecurity.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
