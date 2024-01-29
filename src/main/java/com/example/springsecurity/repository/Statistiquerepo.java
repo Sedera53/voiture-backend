@@ -12,7 +12,7 @@ public interface Statistiquerepo extends JpaRepository<Statistique,String> {
     "    COUNT(*) AS nombre_annonces,\n" +
     "    SUM(CASE WHEN a.validation = 1 THEN 1 ELSE 0 END) AS nombre_annonces_validees\n" +
     "FROM\n" +
-    "    annonces a\n" +
+    "    annonce a\n" +
     "JOIN\n" +
     "    marque m ON a.idmarque = m.idmarque\n" +
     "GROUP BY\n" +
