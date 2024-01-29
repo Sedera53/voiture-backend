@@ -11,13 +11,9 @@ public class Annonce {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idannonce;
 
-    @ManyToOne
-    @JoinColumn(name = "idcategorie")
-    Categorie categorie;
+    int idcategorie;
 
-    @ManyToOne
-    @JoinColumn(name = "idmarque")
-    Marque marque;
+    int idmarque;
 
     String modele;
 
@@ -31,10 +27,7 @@ public class Annonce {
     @Column(columnDefinition = "int default 0")
     int etat;
 
-    @ManyToOne
-    @JoinColumn(name = "idutilisateur")
-    User utilisateur;
-
+    int idutilisateur;
     @Column(columnDefinition = "int default 0")
     int validation;
 
@@ -43,17 +36,17 @@ public class Annonce {
     public Annonce() {
     }
 
-    public Annonce(int idannonce, Categorie categorie, Marque marque, String modele, String matricule, Date annee_fabrication, String image, String detail, int etat, User utilisateur, int validation, double prix) {
+    public Annonce(int idannonce, int idcategorie, int idmarque, String modele, String matricule, Date annee_fabrication, String image, String detail, int etat, int idutilisateur, int validation, double prix) {
         this.idannonce = idannonce;
-        this.categorie = categorie;
-        this.marque = marque;
+        this.idcategorie = idcategorie;
+        this.idmarque = idmarque;
         this.modele = modele;
         this.matricule = matricule;
         this.annee_fabrication = annee_fabrication;
         this.image = image;
         this.detail = detail;
         this.etat = etat;
-        this.utilisateur = utilisateur;
+        this.idutilisateur = idutilisateur;
         this.validation = validation;
         this.prix = prix;
     }
@@ -66,20 +59,20 @@ public class Annonce {
         this.idannonce = idannonce;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
+    public int getIdcategorie() {
+        return idcategorie;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+    public void setIdcategorie(int idcategorie) {
+        this.idcategorie = idcategorie;
     }
 
-    public Marque getMarque() {
-        return marque;
+    public int getIdmarque() {
+        return idmarque;
     }
 
-    public void setMarque(Marque marque) {
-        this.marque = marque;
+    public void setIdmarque(int idmarque) {
+        this.idmarque = idmarque;
     }
 
     public String getModele() {
@@ -130,12 +123,12 @@ public class Annonce {
         this.etat = etat;
     }
 
-    public User getUtilisateur() {
-        return utilisateur;
+    public int getIdutilisateur() {
+        return idutilisateur;
     }
 
-    public void setUtilisateur(User utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setIdutilisateur(int idutilisateur) {
+        this.idutilisateur = idutilisateur;
     }
 
     public int getValidation() {

@@ -5,16 +5,17 @@ import com.example.springsecurity.model.Annonce;
 import java.util.List;
 
 public interface Annonceservice {
-    public List<Annonce> getallannonce();
+    public Annonce insererannonce(Annonce annonces);
 
-    public Annonce insererannonce(Annonce annonce);
+    public List<Annonce> publ();
 
-    public List<Annonce> getannonceparutilisateur(int utilisateur);
-    public List<Annonce> getetat(int etat);
+    public List<Annonce> getannonceparutilisateur(int idutilisateur);
 
-    public List<Annonce> getvalidation(int validation);
+    public List<Annonce> etat(int etat);
 
-    public List<Annonce> recherche(double minPrix,double maxPrix,int idmarque,String modele,int idcategorie);
+    public List<Annonce> validation(int validation);
+
+    public List<Annonce> recherchemultiple(double minPrix,double maxPrix,int idmarque,String modele,int idcategorie);
 
     public void updateEtat(int annonceId, int newEtat);
 

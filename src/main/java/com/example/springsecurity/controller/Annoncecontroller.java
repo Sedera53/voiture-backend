@@ -12,31 +12,31 @@ import java.util.List;
 @RequestMapping
 public class Annoncecontroller {
     @Autowired
-    private Annonceservice annonceservice;
-    @PostMapping("/ajouter_annonce")
-    public String insererannonce(@RequestBody Annonce annonce){
-        annonceservice.insererannonce(annonce);
-        return "new annonce";
-    }
+    private Annonceservice annoncesservice;
     @GetMapping("/liste_annonce")
-    public List<Annonce> getallannonce(){
-        return annonceservice.getallannonce();
+    public List<Annonce> get(){
+        return annoncesservice.publ();
     }
-
-    @GetMapping("/historiques/{idutilisateur}")
+    @PostMapping("/inserer_annonce")
+    public String inserer(@RequestBody Annonce annonces){
+        annoncesservice.insererannonce(annonces);
+        return "annonce";
+    }
+    @GetMapping("/historique/{idutilisateur}")
     public List<Annonce> getannonce(@PathVariable int idutilisateur){
-        return annonceservice.getannonceparutilisateur(idutilisateur);
+        return annoncesservice.getannonceparutilisateur(idutilisateur);
     }
 
-    @GetMapping("/etatannonce/{etat}")
+    @GetMapping("/etat/{etat}")
     public List<Annonce> getetat(@PathVariable int etat){
-        return annonceservice.getetat(etat);
+        return annoncesservice.etat(etat);
     }
 
     @GetMapping("/validation/{validation}")
     public List<Annonce> getvalidation(@PathVariable int validation){
-        return annonceservice.getvalidation(validation);
+        return annoncesservice.validation(validation);
     }
+
     @GetMapping("/recherche/{minPrix}/{maxPrix}/{idmarque}/{modele}/{idcategorie}")
     public List<Annonce> rechercheAnnonces(
             @PathVariable double minPrix,
@@ -44,18 +44,19 @@ public class Annoncecontroller {
             @PathVariable int idmarque,
             @PathVariable String modele,
             @PathVariable int idcategorie) {
-        return annonceservice.recherche(minPrix, maxPrix, idmarque, modele, idcategorie);
+        return annoncesservice.recherchemultiple(minPrix, maxPrix, idmarque, modele, idcategorie);
     }
 
     @PatchMapping("/{id}/vendu")
     public ResponseEntity<String> updateEtat(@PathVariable("id") int annonceId, @RequestParam("newEtat") int newEtat) {
-        annonceservice.updateEtat(annonceId, newEtat);
+        annoncesservice.updateEtat(annonceId, newEtat);
         return ResponseEntity.ok("Etat updated successfully");
     }
 
     @PatchMapping("/{id}/valider")
     public ResponseEntity<String> updatevalidation(@PathVariable("id") int annonceId, @RequestParam("newvalidation") int newvalidation) {
-        annonceservice.updatevalidation(annonceId, newvalidation);
+        annoncesservice.updatevalidation(annonceId, newvalidation);
         return ResponseEntity.ok("annonce valide!");
     }
 }
+

@@ -18,32 +18,32 @@ public class Annonceserviceimpl implements Annonceservice {
     private Validationannoncerepo validationannoncerepo;
 
     @Override
-    public Annonce insererannonce(Annonce annonce) {
-        return annoncerepository.save(annonce);
-    }
-
-    @Override
-    public List<Annonce> getallannonce() {
+    public List<Annonce> publ() {
         return annoncerepository.findAll();
     }
 
     @Override
-    public List<Annonce> getannonceparutilisateur(int utilisateur) {
-        return annoncerepository.myannonce(utilisateur);
+    public Annonce insererannonce(Annonce annonces) {
+        return annoncerepository.save(annonces);
     }
 
     @Override
-    public List<Annonce> getetat(int etat) {
+    public List<Annonce> getannonceparutilisateur(int idutilisateur) {
+        return annoncerepository.myannonce(idutilisateur);
+    }
+
+    @Override
+    public List<Annonce> etat(int etat) {
         return annoncerepository.etat(etat);
     }
 
     @Override
-    public List<Annonce> getvalidation(int validation) {
+    public List<Annonce> validation(int validation) {
         return annoncerepository.validation(validation);
     }
 
     @Override
-    public List<Annonce> recherche(double minPrix, double maxPrix, int idmarque, String modele,int idcategorie) {
+    public List<Annonce> recherchemultiple(double minPrix, double maxPrix, int idmarque, String modele, int idcategorie) {
         return annoncerepository.recherche(minPrix,maxPrix,idmarque,modele,idcategorie);
     }
     @Transactional
